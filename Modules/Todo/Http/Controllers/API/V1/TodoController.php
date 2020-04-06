@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Todo\Http\Resources\TodoCollection;
+use Modules\Todo\Http\Resources\TodoResource;
 use Modules\Todo\ModelFilters\TodoFilter;
 use Modules\Todo\Models\Todo;
 
@@ -18,7 +19,6 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
-        //Get all todos
         $todos = Todo::filter($request->all(), TodoFilter::class)->paginateFilter(5);
         return new TodoCollection($todos);
     }
@@ -30,7 +30,7 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -40,7 +40,8 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        return view('todo::show');
+        $todo = Todo::findOrFail($id);
+        return new TodoResource($todo);
     }
 
     /**

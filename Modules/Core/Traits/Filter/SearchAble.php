@@ -14,6 +14,7 @@ trait SearchAble
 
     public function searchKeyword($searchKeyword)
     {
+//        dd($searchKeyword);
         return $this->where(function ($q) use ($searchKeyword) {
 
             for ($i = 0; $i < sizeof($this->searchable); $i++) {
