@@ -4,8 +4,9 @@ namespace Modules\Todo\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Todo\Models\Todo;
 
-class TodoDatabaseSeeder extends Seeder
+class TodoTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +16,6 @@ class TodoDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-        $this->call(TodoTableSeeder::class);
+        factory(Todo::class,7)->create();
     }
 }
