@@ -5,6 +5,7 @@ namespace Modules\Todo\Http\Controllers\API\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Todo\Http\Requests\StoreTodoRequest;
 use Modules\Todo\Http\Resources\TodoCollection;
 use Modules\Todo\Http\Resources\TodoResource;
 use Modules\Todo\ModelFilters\TodoFilter;
@@ -25,43 +26,51 @@ class TodoController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
+     * @param StoreTodoRequest $request
+     * @return TodoResource
      */
-    public function store(Request $request)
+    public function store(StoreTodoRequest $request)
     {
-
+        $input = $request->only('name');
+        $todo = new Todo();
+        $todo->fill($input);
+        $todo->save();
+        return new TodoResource($todo);
     }
 
     /**
      * Show the specified resource.
-     * @param int $id
-     * @return Response
+     * @param Todo $todo
+     * @return TodoResource
      */
-    public function show($id)
+    public function show(Todo $todo)
     {
-        $todo = Todo::findOrFail($id);
         return new TodoResource($todo);
     }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
-     * @param int $id
-     * @return Response
+     * @param Todo $todo
+     * @return TodoResource
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Todo $todo)
     {
-        //
+        $input = $request->only('name');
+        $todo->fill($input);
+        $todo->save();
+        return new TodoResource($todo);
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     * @param Todo $todo
      * @return Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return response()->noContent();
     }
 }
