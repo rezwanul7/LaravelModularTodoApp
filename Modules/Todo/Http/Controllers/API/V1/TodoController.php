@@ -6,17 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Todo\Http\Resources\TodoCollection;
+use Modules\Todo\ModelFilters\TodoFilter;
 use Modules\Todo\Models\Todo;
 
 class TodoController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @param Request $request
      * @return TodoCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new TodoCollection(Todo::all());
+        //Get all todos
+        $todos = Todo::filter($request->all(), TodoFilter::class)->paginateFilter(5);
+        return new TodoCollection($todos);
     }
 
     /**
