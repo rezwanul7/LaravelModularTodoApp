@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "f1b728d5-da4f-4e62-94af-d9b4896c6029",
+		"name": "Todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/todo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"todo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Eat Breakfast Asap",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Finish Launch Okay?",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/todo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"todo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Destroy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/todo/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"todo",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
